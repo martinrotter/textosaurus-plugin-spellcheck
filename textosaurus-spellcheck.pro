@@ -13,7 +13,7 @@
 ## Every plugin must link against libtextosaurus library.
 ##
 ## QMake usage: qmake "TEXTOSAURUS_INCLUDE=<include-headers-root-folder>" "LIBTEXTOSAURUS_BIN_LIB=<folder-with-dll-lib-so>"
-## Example: qmake "TEXTOSAURUS_INCLUDE=c:\\textosaurus\\include" "LIBTEXTOSAURUS_BIN_LIB=c:\\my-programs\\textosaurus"
+## Example: qmake "TEXTOSAURUS_INCLUDE=c:/textosaurus/include" "LIBTEXTOSAURUS_BIN_LIB=c:/my-programs/textosaurus"
 
 include($$PWD/plugin-common-setup.pri)
 
@@ -34,3 +34,11 @@ HEADERS += \
 
 DISTFILES += \
         plugin.json
+
+# Link to Hunspell.
+INCLUDEPATH +=  hunspell/include
+
+DEPENDPATH += $$PWD/hunspell/lib/windows_debug
+
+win32: LIBS += -L$$PWD/hunspell/lib/windows_debug -llibhunspell
+unix: LIBS += -L$$LIBTEXTOSAURUS_BIN_LIB -lhunspell

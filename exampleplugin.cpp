@@ -8,6 +8,8 @@
 #include "libtextosaurus/saurus/gui/tabwidget.h"
 #include "libtextosaurus/saurus/gui/texteditor.h"
 
+#include <hunspell/hunspell.hxx>
+
 #include <QMessageBox>
 #include <QAction>
 #include <QLabel>
@@ -46,6 +48,8 @@ void ExamplePlugin::start(
     WebFactory *web_factory) {
 
   m_mainWidget = main_form_widget;
+
+  Hunspell *spell = new Hunspell("D:", "D:");
 
   QMessageBox::information(nullptr, "Example plugin loaded", "Example plugin loaded");
 
