@@ -1,6 +1,6 @@
 TEMPLATE = lib
 CONFIG += unversioned_libname unversioned_soname skip_target_version_ext c++17 warn_on resources_small
-CONFIG -=  debug_and_release
+CONFIG -= debug_and_release
 
 # Setup specific compiler options.
 CONFIG(release, debug|release) {
@@ -37,8 +37,7 @@ message(Textosaurus repository root folder is: $$TEXTOSAURUS_INCLUDE)
 message(Libtextosaurus binary folder is: $$LIBTEXTOSAURUS_BIN_LIB)
 
 # Setup inclusion of (lib)textosaurus, which is needed
-# by every plugin. Every plugin must link
-# against libtextosaurus.
+# by every plugin. Every plugin must link against libtextosaurus.
 INCLUDEPATH +=  $$TEXTOSAURUS_INCLUDE \
                 $$TEXTOSAURUS_INCLUDE/libtextosaurus \
                 $$TEXTOSAURUS_INCLUDE/libtextosaurus/3rd-party/scintilla/qt/ScintillaEditBase \

@@ -8,7 +8,7 @@
 #### How to compile (use A or B)
 ##
 ## A) Download latest prebuilt release of Textosaurus (all C++ header files and *{dll,lib} files are bundled in it).
-## B) Compiled Textosaurus from source.
+## B) Compile Textosaurus from source.
 ##
 ## Every plugin must link against libtextosaurus library.
 ##
@@ -27,10 +27,12 @@ else {
 QT *= widgets
 
 SOURCES += \
-        exampleplugin.cpp
+        src/spellchecker.cpp \
+        src/spellcheckplugin.cpp
 
 HEADERS += \
-        exampleplugin.h
+        src/spellchecker.h \
+        src/spellcheckplugin.h
 
 DISTFILES += \
         plugin.json
@@ -38,7 +40,13 @@ DISTFILES += \
 # Link to Hunspell.
 INCLUDEPATH +=  hunspell/include
 
-DEPENDPATH += $$PWD/hunspell/lib/windows_debug
+CONFIG(release, debug|release) {
+  DEPENDPATH += $$PWD/hunspell/lib/windows_release
+  win32: LIBS += -L$$PWD/hunspell/lib/windows_release -llibhunspell
+}
+else {
+  DEPENDPATH += $$PWD/hunspell/lib/windows_debug
+  win32: LIBS += -L$$PWD/hunspell/lib/windows_debug -llibhunspell
+}
 
-win32: LIBS += -L$$PWD/hunspell/lib/windows_debug -llibhunspell
-unix: LIBS += -L$$LIBTEXTOSAURUS_BIN_LIB -lhunspell
+unix: LIBS += -lhunspell

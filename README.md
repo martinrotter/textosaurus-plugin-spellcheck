@@ -1,2 +1,2 @@
 # textosaurus-plugin-spellcheck
-Plugin with spell-checking functionality for Textosaurus.
+Plugin with Hunspell-based spell-checking functionality for Textosaurus.
