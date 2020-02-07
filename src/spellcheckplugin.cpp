@@ -14,6 +14,7 @@
 #include <QAction>
 #include <QLabel>
 #include <QLayout>
+#include <QTextCodec>
 
 SpellcheckPlugin::SpellcheckPlugin(QObject *parent) {
   Q_UNUSED(parent)
@@ -46,7 +47,15 @@ void SpellcheckPlugin::start(const QString &library_file, QWidget *main_form_wid
     Settings *settings, IconFactory *icon_factory, WebFactory *web_factory) {
   PluginBase::start(library_file, main_form_widget, text_app, settings, icon_factory, web_factory);
 
-  Hunspell *spell = new Hunspell("D:", "D:");
+  QString aff = QSL("\\\\?\\") + "c:\\Projekty\\build\\src\\textosaurus\\plugins\\spellcheck\\dict\\index.aff";
+  QString dic = QSL("\\\\?\\") + "c:\\Projekty\\build\\src\\textosaurus\\plugins\\spellcheck\\dict\\index.dic";
+
+  Hunspell *spell = new Hunspell(aff.toUtf8().constData(), dic.toUtf8().constData());
+
+  auto sp = spell->spell(QString("termín").toStdString());
+
+  auto sss = spell->suggest(QString("Pepíčk").toUtf8().toStdString());
+  auto xxx = QString(QByteArray::fromStdString(sss.at(2)));
 
   QMessageBox::information(nullptr, "Example plugin loaded", "Example plugin loaded");
 }
