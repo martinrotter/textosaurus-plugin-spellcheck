@@ -38,7 +38,9 @@ DISTFILES += \
         plugin.json
 
 # Link to Hunspell.
-INCLUDEPATH +=  hunspell/include
+win {
+  INCLUDEPATH += hunspell/include
+}
 
 CONFIG(release, debug|release) {
   DEPENDPATH += $$PWD/hunspell/lib/windows_release
