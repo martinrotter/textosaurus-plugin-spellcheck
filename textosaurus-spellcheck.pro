@@ -31,14 +31,16 @@ SOURCES += \
         src/spellcheckplugin.cpp
 
 HEADERS += \
+        src/definitions.h \
         src/spellchecker.h \
         src/spellcheckplugin.h
 
 DISTFILES += \
-        plugin.json
+        plugin.json \
+        uncrustify.cfg
 
 # Link to Hunspell.
-win {
+win32 {
   INCLUDEPATH += hunspell/include
 }
 

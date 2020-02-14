@@ -3,7 +3,7 @@
 #ifndef SPELLCHECKPLUGIN_H
 #define SPELLCHECKPLUGIN_H
 
-#include <qobject.h>
+#include <QObject>
 
 #include "libtextosaurus/saurus/plugin-system/pluginbase.h"
 
